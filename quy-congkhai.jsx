@@ -171,8 +171,8 @@ export default function QuyCongKhaiApp() {
   }
 
   return (
-    <div className="min-h-screen flex justify-center" style={{ background: C.chalkDim }}>
-      <div className="w-full sm:max-w-sm relative" style={{ background: C.chalk, minHeight: "100vh" }}>
+    <div className="w-full flex justify-center" style={{ background: C.chalkDim }}>
+      <div className="w-full sm:max-w-sm relative min-h-screen" style={{ background: C.chalk }}>
         <Scoreboard teamName={teamName} balance={balance} />
 
         <MonthSwitcher monthList={monthList} selected={selectedMonth} onSelect={setSelectedMonth} />

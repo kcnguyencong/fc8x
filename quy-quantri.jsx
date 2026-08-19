@@ -543,8 +543,8 @@ export default function QuanTriQuyApp() {
   }
 
   return (
-    <div className="min-h-screen flex justify-center" style={{ background: C.chalkDim }}>
-      <div className="w-full sm:max-w-sm relative" style={{ background: C.chalk, minHeight: "100vh" }}>
+    <div className="w-full flex justify-center" style={{ background: C.chalkDim }}>
+      <div className="w-full sm:max-w-sm relative min-h-screen" style={{ background: C.chalk }}>
         <Scoreboard teamName={teamName} onRename={setTeamName} balance={balance} thisMonthThu={thisMonthThu} thisMonthChi={thisMonthChi} onOpenSettings={() => setShowPinSettings(true)} />
         {tab === "overview" && <OverviewTab transactions={transactions} members={members} monthlyChart={monthlyChart} />}
         {tab === "transactions" && <TransactionsTab transactions={transactions} members={members} onDelete={deleteTx} />}
