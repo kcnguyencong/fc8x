@@ -23,7 +23,7 @@ const bodyFont = "'Inter','Helvetica Neue',Arial,sans-serif";
 const CHI_CATS = ["Thuê sân", "Trọng tài", "Nước uống", "Áo đấu / Dụng cụ", "Liên hoan", "Chi khác"];
 const THU_CATS = ["Quỹ thành viên", "Tài trợ / Ủng hộ", "Thu khác"];
 const MONTHS_VN = ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"];
-const DEFAULT_PIN = "0000";
+const DEFAULT_PIN = "20121984";
 
 function fmt(n) { return Math.round(Number(n) || 0).toLocaleString("vi-VN"); }
 function todayISO() { return new Date().toISOString().slice(0, 10); }
@@ -117,18 +117,18 @@ function PinGate({ correctPin, onUnlock }) {
         <h1 className="text-lg font-bold uppercase tracking-wide mb-1" style={{ color: C.chalk, fontFamily: displayFont }}>Khu vực quản trị</h1>
         <p className="text-xs mb-6" style={{ color: C.pitch200, fontFamily: bodyFont }}>Nhập mã PIN để quản lý quỹ đội</p>
         <input
-          type="password" inputMode="numeric" maxLength={6} autoFocus value={val}
+          type="password" inputMode="numeric" maxLength={10} autoFocus value={val}
           onChange={(e) => setVal(e.target.value.replace(/\D/g, ""))}
           onKeyDown={(e) => e.key === "Enter" && submit()}
-          className="w-full text-center text-2xl tracking-[0.5em] py-3 rounded-xl outline-none mb-4"
+          className="w-full text-center text-2xl tracking-[0.5em] py-3 rounded-xl outline-none mb-4 font-mono"
           style={{
-            background: "rgba(246,243,236,0.1)", color: C.chalk, fontFamily: numFont,
-            border: `1px solid ${err ? C.chi : "rgba(246,243,236,0.25)"}`,
+            background: "#ffffff", color: C.ink, fontFamily: numFont,
+            border: `2px solid ${err ? C.chi : C.gold}`,
           }}
-          placeholder="••••"
+          placeholder="••••••••"
         />
-        {err && <p className="text-xs mb-3" style={{ color: "#F0A98F", fontFamily: bodyFont }}>Mã PIN không đúng, thử lại.</p>}
-        <button onClick={submit} className="w-full py-3 rounded-xl text-sm font-bold uppercase tracking-wide" style={{ background: C.gold, color: C.pitch950, fontFamily: bodyFont }}>
+        {err && <p className="text-xs mb-3 font-semibold" style={{ color: "#F0A98F", fontFamily: bodyFont }}>Mã PIN không đúng, thử lại.</p>}
+        <button onClick={submit} className="w-full py-3 rounded-xl text-sm font-bold uppercase tracking-wide shadow-md" style={{ background: C.gold, color: C.pitch950, fontFamily: bodyFont }}>
           Mở khóa
         </button>
         <p className="text-[11px] mt-5" style={{ color: C.pitch200, fontFamily: bodyFont, opacity: 0.7 }}>
