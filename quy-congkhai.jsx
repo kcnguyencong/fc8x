@@ -177,51 +177,53 @@ export default function QuyCongKhaiApp() {
 
         <MonthSwitcher monthList={monthList} selected={selectedMonth} onSelect={setSelectedMonth} />
 
-        <div className="px-5 pb-10">
-          <div className="flex items-center justify-between mb-3">
-            <button onClick={goPrev} disabled={idx >= monthList.length - 1} className="p-1.5 rounded-full disabled:opacity-30" style={{ background: "#fff", border: `1px solid ${C.line}` }}>
+        <div className="px-5 pt-3 pb-28 space-y-6">
+          <div className="flex items-center justify-between mb-1">
+            <button onClick={goPrev} disabled={idx >= monthList.length - 1} className="p-1.5 rounded-full disabled:opacity-30 shadow-sm" style={{ background: "#fff", border: `1px solid ${C.line}` }}>
               <ChevronLeft size={15} color={C.ink} />
             </button>
             <h2 className="text-sm font-bold uppercase tracking-wide" style={{ color: C.ink, fontFamily: displayFont }}>{monthLabel}</h2>
-            <button onClick={goNext} disabled={idx <= 0} className="p-1.5 rounded-full disabled:opacity-30" style={{ background: "#fff", border: `1px solid ${C.line}` }}>
+            <button onClick={goNext} disabled={idx <= 0} className="p-1.5 rounded-full disabled:opacity-30 shadow-sm" style={{ background: "#fff", border: `1px solid ${C.line}` }}>
               <ChevronRight size={15} color={C.ink} />
             </button>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-6">
-            <div className="rounded-xl px-3 py-2.5 border" style={{ borderColor: C.line, background: "#fff" }}>
+          <div className="grid grid-cols-2 gap-3.5">
+            <div className="rounded-xl px-3 py-3 border shadow-sm" style={{ borderColor: C.line, background: "#fff" }}>
               <div className="flex items-center gap-1.5 mb-1"><TrendingUp size={13} color={C.thu} /><span className="text-[11px] uppercase tracking-wide" style={{ color: C.inkSoft, fontFamily: bodyFont }}>Thu trong tháng</span></div>
               <p className="text-base font-semibold tabular-nums" style={{ color: C.thu, fontFamily: numFont }}>{fmt(monthThu)} đ</p>
             </div>
-            <div className="rounded-xl px-3 py-2.5 border" style={{ borderColor: C.line, background: "#fff" }}>
+            <div className="rounded-xl px-3 py-3 border shadow-sm" style={{ borderColor: C.line, background: "#fff" }}>
               <div className="flex items-center gap-1.5 mb-1"><TrendingDown size={13} color={C.chi} /><span className="text-[11px] uppercase tracking-wide" style={{ color: C.inkSoft, fontFamily: bodyFont }}>Chi trong tháng</span></div>
               <p className="text-base font-semibold tabular-nums" style={{ color: C.chi, fontFamily: numFont }}>{fmt(monthChi)} đ</p>
             </div>
           </div>
 
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-sm font-bold uppercase tracking-wide flex items-center gap-1.5" style={{ color: C.ink, fontFamily: displayFont }}>
-              <Users size={14} /> Điểm danh đóng quỹ
-            </h3>
-            <span className="text-xs" style={{ color: C.inkSoft, fontFamily: bodyFont }}>{paidCount}/{members.length} đã đóng</span>
-          </div>
-          {members.length === 0 ? (
-            <EmptyState icon={<Users size={20} color={C.pitch500} />} text="Đội chưa có danh sách thành viên." />
-          ) : (
-            <div className="rounded-2xl border divide-y mb-6" style={{ borderColor: C.line, background: "#fff" }}>
-              {attendance.map((m) => (
-                <div key={m.id} className="flex items-center gap-3 px-4 py-2.5">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0" style={{ background: C.pitch200, color: C.pitch700, fontFamily: displayFont }}>{initials(m.name)}</div>
-                  <p className="text-sm flex-1 truncate" style={{ color: C.ink, fontFamily: bodyFont }}>{m.name}</p>
-                  {m.paid ? (
-                    <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: C.thu, fontFamily: bodyFont }}><CheckCircle2 size={14} /> Đã đóng</span>
-                  ) : (
-                    <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: C.inkSoft, fontFamily: bodyFont }}><Circle size={14} /> Chưa đóng</span>
-                  )}
-                </div>
-              ))}
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-bold uppercase tracking-wide flex items-center gap-1.5" style={{ color: C.ink, fontFamily: displayFont }}>
+                <Users size={14} /> Điểm danh đóng quỹ
+              </h3>
+              <span className="text-xs font-medium" style={{ color: C.inkSoft, fontFamily: bodyFont }}>{paidCount}/{members.length} đã đóng</span>
             </div>
-          )}
+            {members.length === 0 ? (
+              <EmptyState icon={<Users size={20} color={C.pitch500} />} text="Đội chưa có danh sách thành viên." />
+            ) : (
+              <div className="rounded-2xl border divide-y shadow-sm" style={{ borderColor: C.line, background: "#fff" }}>
+                {attendance.map((m) => (
+                  <div key={m.id} className="flex items-center gap-3 px-4 py-2.5">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0" style={{ background: C.pitch200, color: C.pitch700, fontFamily: displayFont }}>{initials(m.name)}</div>
+                    <p className="text-sm flex-1 truncate" style={{ color: C.ink, fontFamily: bodyFont }}>{m.name}</p>
+                    {m.paid ? (
+                      <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: C.thu, fontFamily: bodyFont }}><CheckCircle2 size={14} /> Đã đóng</span>
+                    ) : (
+                      <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: C.inkSoft, fontFamily: bodyFont }}><Circle size={14} /> Chưa đóng</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
           {monthOtherThuList.length > 0 && (
             <>

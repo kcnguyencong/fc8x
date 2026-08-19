@@ -326,28 +326,33 @@ function OverviewTab({ transactions, members, monthlyChart }) {
   const recent = transactions.slice(0, 5);
   const memberName = (id) => members.find((m) => m.id === id)?.name;
   return (
-    <div className="px-5 pt-5 pb-24">
-      <h3 className="text-sm font-bold uppercase tracking-wide mb-3" style={{ color: C.ink, fontFamily: displayFont }}>Thu chi 6 tháng gần đây</h3>
-      <div className="rounded-2xl border p-4 mb-6" style={{ borderColor: C.line, background: "#fff" }}>
-        <ResponsiveContainer width="100%" height={140}>
-          <BarChart data={monthlyChart} barGap={4}>
-            <XAxis dataKey="label" tick={{ fontSize: 11, fill: C.inkSoft, fontFamily: bodyFont }} axisLine={false} tickLine={false} />
-            <Tooltip cursor={{ fill: C.chalkDim }} formatter={(v, n) => [`${fmt(v)} đ`, n === "thu" ? "Thu" : "Chi"]} contentStyle={{ fontFamily: bodyFont, fontSize: 12, borderRadius: 8, border: `1px solid ${C.line}` }} />
-            <Bar dataKey="thu" radius={[3, 3, 0, 0]} maxBarSize={10}>{monthlyChart.map((_, i) => <Cell key={i} fill={C.thu} />)}</Bar>
-            <Bar dataKey="chi" radius={[3, 3, 0, 0]} maxBarSize={10}>{monthlyChart.map((_, i) => <Cell key={i} fill={C.chi} />)}</Bar>
-          </BarChart>
-        </ResponsiveContainer>
-        <div className="flex items-center gap-4 mt-1 justify-center">
-          <span className="flex items-center gap-1.5 text-xs" style={{ color: C.inkSoft, fontFamily: bodyFont }}><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: C.thu }} /> Thu</span>
-          <span className="flex items-center gap-1.5 text-xs" style={{ color: C.inkSoft, fontFamily: bodyFont }}><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: C.chi }} /> Chi</span>
+    <div className="px-5 pt-6 pb-28 space-y-6">
+      <div>
+        <h3 className="text-sm font-bold uppercase tracking-wide mb-3" style={{ color: C.ink, fontFamily: displayFont }}>Thu chi 6 tháng gần đây</h3>
+        <div className="rounded-2xl border p-4 shadow-sm" style={{ borderColor: C.line, background: "#fff" }}>
+          <ResponsiveContainer width="100%" height={145}>
+            <BarChart data={monthlyChart} barGap={4}>
+              <XAxis dataKey="label" tick={{ fontSize: 11, fill: C.inkSoft, fontFamily: bodyFont }} axisLine={false} tickLine={false} />
+              <Tooltip cursor={{ fill: C.chalkDim }} formatter={(v, n) => [`${fmt(v)} đ`, n === "thu" ? "Thu" : "Chi"]} contentStyle={{ fontFamily: bodyFont, fontSize: 12, borderRadius: 8, border: `1px solid ${C.line}` }} />
+              <Bar dataKey="thu" radius={[3, 3, 0, 0]} maxBarSize={10}>{monthlyChart.map((_, i) => <Cell key={i} fill={C.thu} />)}</Bar>
+              <Bar dataKey="chi" radius={[3, 3, 0, 0]} maxBarSize={10}>{monthlyChart.map((_, i) => <Cell key={i} fill={C.chi} />)}</Bar>
+            </BarChart>
+          </ResponsiveContainer>
+          <div className="flex items-center gap-4 mt-2 justify-center">
+            <span className="flex items-center gap-1.5 text-xs font-medium" style={{ color: C.inkSoft, fontFamily: bodyFont }}><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: C.thu }} /> Thu</span>
+            <span className="flex items-center gap-1.5 text-xs font-medium" style={{ color: C.inkSoft, fontFamily: bodyFont }}><span className="w-2.5 h-2.5 rounded-sm inline-block" style={{ background: C.chi }} /> Chi</span>
+          </div>
         </div>
       </div>
-      <h3 className="text-sm font-bold uppercase tracking-wide mb-2" style={{ color: C.ink, fontFamily: displayFont }}>Giao dịch gần đây</h3>
-      {recent.length === 0 ? (
-        <EmptyState icon={<Receipt size={22} color={C.pitch500} />} text="Chưa có giao dịch nào. Bấm nút + để ghi khoản thu, chi đầu tiên." />
-      ) : (
-        <div className="rounded-2xl border px-4" style={{ borderColor: C.line, background: "#fff" }}>{recent.map((tx) => <TxRow key={tx.id} tx={tx} memberName={memberName(tx.memberId)} />)}</div>
-      )}
+
+      <div>
+        <h3 className="text-sm font-bold uppercase tracking-wide mb-3" style={{ color: C.ink, fontFamily: displayFont }}>Giao dịch gần đây</h3>
+        {recent.length === 0 ? (
+          <EmptyState icon={<Receipt size={22} color={C.pitch500} />} text="Chưa có giao dịch nào. Bấm nút + để ghi khoản thu, chi đầu tiên." />
+        ) : (
+          <div className="rounded-2xl border px-4 shadow-sm" style={{ borderColor: C.line, background: "#fff" }}>{recent.map((tx) => <TxRow key={tx.id} tx={tx} memberName={memberName(tx.memberId)} />)}</div>
+        )}
+      </div>
     </div>
   );
 }
