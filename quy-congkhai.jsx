@@ -226,26 +226,28 @@ export default function QuyCongKhaiApp() {
           </div>
 
           {monthOtherThuList.length > 0 && (
-            <>
-              <h3 className="text-sm font-bold uppercase tracking-wide mb-2" style={{ color: C.ink, fontFamily: displayFont }}>Khoản thu khác</h3>
-              <div className="rounded-2xl border px-4 mb-6" style={{ borderColor: C.line, background: "#fff" }}>
+            <div>
+              <h3 className="text-sm font-bold uppercase tracking-wide mb-3" style={{ color: C.ink, fontFamily: displayFont }}>Khoản thu khác</h3>
+              <div className="rounded-2xl border px-4 shadow-sm" style={{ borderColor: C.line, background: "#fff" }}>
                 {monthOtherThuList.map((tx) => <TxRow key={tx.id} tx={tx} />)}
               </div>
-            </>
-          )}
-
-          <h3 className="text-sm font-bold uppercase tracking-wide mb-2 flex items-center gap-1.5" style={{ color: C.ink, fontFamily: displayFont }}>
-            <Receipt size={14} /> Chi tiêu trong tháng
-          </h3>
-          {monthChiList.length === 0 ? (
-            <EmptyState icon={<Receipt size={20} color={C.pitch500} />} text="Tháng này chưa phát sinh khoản chi nào." />
-          ) : (
-            <div className="rounded-2xl border px-4" style={{ borderColor: C.line, background: "#fff" }}>
-              {monthChiList.map((tx) => <TxRow key={tx.id} tx={tx} />)}
             </div>
           )}
 
-          <p className="text-center text-[11px] mt-8" style={{ color: C.inkSoft, fontFamily: bodyFont }}>
+          <div>
+            <h3 className="text-sm font-bold uppercase tracking-wide mb-3 flex items-center gap-1.5" style={{ color: C.ink, fontFamily: displayFont }}>
+              <Receipt size={14} /> Chi tiêu trong tháng
+            </h3>
+            {monthChiList.length === 0 ? (
+              <EmptyState icon={<Receipt size={20} color={C.pitch500} />} text="Tháng này chưa phát sinh khoản chi nào." />
+            ) : (
+              <div className="rounded-2xl border px-4 shadow-sm" style={{ borderColor: C.line, background: "#fff" }}>
+                {monthChiList.map((tx) => <TxRow key={tx.id} tx={tx} />)}
+              </div>
+            )}
+          </div>
+
+          <p className="text-center text-[11px] pt-4" style={{ color: C.inkSoft, fontFamily: bodyFont }}>
             Cập nhật bởi Ban quản lý quỹ · Mọi thắc mắc vui lòng liên hệ thủ quỹ đội
           </p>
         </div>
