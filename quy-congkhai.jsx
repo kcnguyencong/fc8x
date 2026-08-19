@@ -58,7 +58,7 @@ function Scoreboard({ teamName, balance }) {
       <div className="absolute inset-0" style={netPattern} />
       <div className="relative flex items-center justify-between mb-5">
         <div className="flex items-center gap-2 min-w-0">
-          <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: C.gold }}><ShieldCheck size={15} color={C.pitch950} /></div>
+          <img src="/logo.png" alt="FC 8X+ Logo" className="w-8 h-8 rounded-full object-cover shrink-0 border border-[#E3B23C]" />
           <span className="text-sm font-semibold tracking-wide uppercase truncate" style={{ color: C.chalk, fontFamily: displayFont }}>{teamName}</span>
         </div>
         <span className="text-[10px] px-2 py-1 rounded-full uppercase tracking-wider shrink-0" style={{ background: "rgba(246,243,236,0.12)", color: C.pitch200, fontFamily: bodyFont }}>Công khai</span>

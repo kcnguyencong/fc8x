@@ -14,9 +14,7 @@ function MainApp() {
       {/* Top Switcher Bar */}
       <header className="w-full bg-[#0F231B] text-[#F6F3EC] border-b border-[#1B4332] px-4 py-2.5 flex items-center justify-between sticky top-0 z-50 shadow-md">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-[#E3B23C] flex items-center justify-center">
-            <ShieldCheck className="w-4 h-4 text-[#0F231B]" />
-          </div>
+          <img src="/logo.png" alt="FC 8X+ Logo" className="w-8 h-8 rounded-full object-cover border border-[#E3B23C]" />
           <span className="font-bold text-sm tracking-wide uppercase font-['Oswald'] text-[#F6F3EC]">
             FC 8X+ XUÂN ĐÌNH
           </span>
