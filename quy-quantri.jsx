@@ -109,7 +109,7 @@ function PinGate({ correctPin, onUnlock }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6" style={{ background: `linear-gradient(180deg, ${C.pitch950}, ${C.pitch700})` }}>
+    <div className="w-full flex-1 flex items-center justify-center px-6 py-12" style={{ background: `linear-gradient(180deg, ${C.pitch950}, ${C.pitch700})` }}>
       <div className="w-full max-w-xs text-center">
         <div className="w-14 h-14 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ background: C.gold }}>
           <Lock size={24} color={C.pitch950} />
@@ -131,9 +131,6 @@ function PinGate({ correctPin, onUnlock }) {
         <button onClick={submit} className="w-full py-3 rounded-xl text-sm font-bold uppercase tracking-wide shadow-md" style={{ background: C.gold, color: C.pitch950, fontFamily: bodyFont }}>
           Mở khóa
         </button>
-        <p className="text-[11px] mt-5" style={{ color: C.pitch200, fontFamily: bodyFont, opacity: 0.7 }}>
-          Mã mặc định lần đầu: {DEFAULT_PIN}. Đây chỉ là lớp ngăn truy cập nhẹ, không phải bảo mật tuyệt đối — không nhập dữ liệu nhạy cảm.
-        </p>
       </div>
     </div>
   );
