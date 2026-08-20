@@ -448,7 +448,9 @@ function NavBtn({ it, active, onClick }) {
 /* ---------- root ---------- */
 export default function QuanTriQuyApp() {
   const [loaded, setLoaded] = useState(false);
-  const [unlocked, setUnlocked] = useState(false);
+  const [unlocked, setUnlocked] = useState(() => {
+    try { return sessionStorage.getItem('admin_unlocked') === 'true'; } catch { return false; }
+  });
   const [teamName, setTeamName] = useState("FC 8X+ XUÂN ĐÌNH");
   const [members, setMembers] = useState([]);
   const [transactions, setTransactions] = useState([]);
@@ -522,11 +524,16 @@ export default function QuanTriQuyApp() {
   function addMember(m) { setMembers((prev) => [...prev, { id: uid(), ...m }]); setShowAddMember(false); }
   function deleteMember(id) { setMembers((prev) => prev.filter((m) => m.id !== id)); }
 
+  function handleUnlock() {
+    try { sessionStorage.setItem('admin_unlocked', 'true'); } catch {}
+    setUnlocked(true);
+  }
+
   if (!loaded) {
     return <div className="min-h-screen flex items-center justify-center" style={{ background: C.chalk }}><p className="text-sm" style={{ color: C.inkSoft, fontFamily: bodyFont }}>Đang tải...</p></div>;
   }
   if (!unlocked) {
-    return <PinGate correctPin={adminPin} onUnlock={() => setUnlocked(true)} />;
+    return <PinGate correctPin={adminPin} onUnlock={handleUnlock} />;
   }
 
   return (
