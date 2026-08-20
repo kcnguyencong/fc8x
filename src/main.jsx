@@ -54,8 +54,42 @@ function MainApp() {
   );
 }
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("Uncaught error:", error, errorInfo);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[#EFEADC] text-[#1F2A22]">
+          <div className="bg-white p-6 rounded-2xl shadow-lg max-w-sm text-center">
+            <h2 className="text-lg font-bold text-red-600 mb-2">Đã xảy ra lỗi ứng dụng</h2>
+            <p className="text-xs text-gray-600 mb-4">{this.state.error?.toString()}</p>
+            <button
+              onClick={() => { localStorage.clear(); sessionStorage.clear(); window.location.reload(); }}
+              className="px-4 py-2 bg-[#1B4332] text-white rounded-xl text-xs font-bold uppercase"
+            >
+              Xóa bộ nhớ đệm & Tải lại
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <MainApp />
+    <ErrorBoundary>
+      <MainApp />
+    </ErrorBoundary>
   </React.StrictMode>
 );
