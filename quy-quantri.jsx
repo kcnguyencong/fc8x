@@ -460,12 +460,15 @@ export default function QuanTriQuyApp() {
   const [showAddMember, setShowAddMember] = useState(false);
   const [showPinSettings, setShowPinSettings] = useState(false);
 
+  const isSyncing = useRef(false);
+
   useEffect(() => {
     const loadData = async () => {
       try {
         const res = await window.storage.get("club-data", true);
         if (res && res.value) {
           const data = JSON.parse(res.value);
+          isSyncing.current = true;
           setTeamName(data.teamName || "FC 8X+ XUÂN ĐÌNH");
           setMembers(data.members || []);
           setTransactions(data.transactions || []);
@@ -477,6 +480,7 @@ export default function QuanTriQuyApp() {
         setAdminPin("20121984");
       } finally {
         setLoaded(true);
+        setTimeout(() => { isSyncing.current = false; }, 50);
       }
     };
 
@@ -484,12 +488,14 @@ export default function QuanTriQuyApp() {
 
     const handleSync = (e) => {
       try {
-        if (e.detail) {
+        if (e.detail && !isSyncing.current) {
+          isSyncing.current = true;
           const data = JSON.parse(e.detail);
           setTeamName(data.teamName || "FC 8X+ XUÂN ĐÌNH");
           setMembers(data.members || []);
           setTransactions(data.transactions || []);
           if (data.adminPin) setAdminPin(data.adminPin);
+          setTimeout(() => { isSyncing.current = false; }, 50);
         }
       } catch (err) {}
     };
@@ -499,7 +505,7 @@ export default function QuanTriQuyApp() {
   }, []);
 
   useEffect(() => {
-    if (!loaded) return;
+    if (!loaded || isSyncing.current) return;
     const payload = JSON.stringify({ teamName, members, transactions, adminPin });
     window.storage.set("club-data", payload, true).catch(() => {});
   }, [loaded, teamName, members, transactions, adminPin]);
