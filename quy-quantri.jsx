@@ -199,28 +199,10 @@ function Scoreboard({ teamName, onRename, balance, thisMonthThu, thisMonthChi, o
   return (
     <div className="relative overflow-hidden px-5 pt-6 pb-7" style={{ background: `linear-gradient(180deg, ${C.pitch950}, ${C.pitch700})` }}>
       <div className="absolute inset-0" style={netPattern} />
-      <div className="relative flex items-center justify-between mb-5">
-        <div className="flex items-center gap-2 min-w-0">
-          <img src="/logo.png" alt="FC 8X+ Logo" className="w-8 h-8 rounded-full object-cover shrink-0 border border-[#E3B23C]" />
-          {editing ? (
-            <input autoFocus value={val} onChange={(e) => setVal(e.target.value)}
-              onBlur={() => { setEditing(false); onRename(val || teamName); }}
-              onKeyDown={(e) => e.key === "Enter" && e.currentTarget.blur()}
-              className="bg-transparent border-b outline-none text-sm font-semibold tracking-wide uppercase min-w-0"
-              style={{ color: C.chalk, borderColor: C.gold, fontFamily: displayFont }} />
-          ) : (
-            <button onClick={() => setEditing(true)} className="flex items-center gap-1.5 min-w-0">
-              <span className="text-sm font-semibold tracking-wide uppercase truncate" style={{ color: C.chalk, fontFamily: displayFont }}>{teamName}</span>
-              <PenSquare size={12} color={C.pitch200} className="shrink-0" />
-            </button>
-          )}
-        </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <span className="text-[10px] px-2 py-1 rounded-full uppercase tracking-wider" style={{ background: "rgba(246,243,236,0.12)", color: C.pitch200, fontFamily: bodyFont }}>Quản trị</span>
-          <button onClick={onOpenSettings} className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(246,243,236,0.12)" }}>
-            <Settings size={13} color={C.pitch200} />
-          </button>
-        </div>
+      <div className="relative flex justify-end mb-2">
+        <button onClick={onOpenSettings} className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: "rgba(246,243,236,0.12)" }}>
+          <Settings size={13} color={C.pitch200} />
+        </button>
       </div>
       <div className="relative">
         <p className="text-xs uppercase tracking-[0.2em] mb-1" style={{ color: C.pitch200, fontFamily: bodyFont }}>Quỹ hiện có</p>

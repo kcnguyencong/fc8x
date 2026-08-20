@@ -56,13 +56,6 @@ function Scoreboard({ teamName, balance }) {
   return (
     <div className="relative overflow-hidden px-5 pt-6 pb-6" style={{ background: `linear-gradient(180deg, ${C.pitch950}, ${C.pitch700})` }}>
       <div className="absolute inset-0" style={netPattern} />
-      <div className="relative flex items-center justify-between mb-5">
-        <div className="flex items-center gap-2 min-w-0">
-          <img src="/logo.png" alt="FC 8X+ Logo" className="w-8 h-8 rounded-full object-cover shrink-0 border border-[#E3B23C]" />
-          <span className="text-sm font-semibold tracking-wide uppercase truncate" style={{ color: C.chalk, fontFamily: displayFont }}>{teamName}</span>
-        </div>
-        <span className="text-[10px] px-2 py-1 rounded-full uppercase tracking-wider shrink-0" style={{ background: "rgba(246,243,236,0.12)", color: C.pitch200, fontFamily: bodyFont }}>Công khai</span>
-      </div>
       <div className="relative">
         <p className="text-xs uppercase tracking-[0.2em] mb-1" style={{ color: C.pitch200, fontFamily: bodyFont }}>Quỹ hiện có</p>
         <p className="text-4xl font-bold tabular-nums" style={{ color: C.chalk, fontFamily: numFont, letterSpacing: "-0.02em" }}>
